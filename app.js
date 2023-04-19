@@ -105,7 +105,14 @@ formulario.addEventListener('submit', function (event) {
     descripcionInput.value = '';
 
     // Mostrar un mensaje de éxito
-    alert('Producto agregado con éxito al stock.');
+
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Producto agregado con éxito al stock',
+        showConfirmButton: false,
+        timer: 1000
+      })
 });
 
 // Código JavaScript para manejar el clic en el botón de ver stock

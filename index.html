@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Preentrega 3</title>
+</head>
+
+<body>
+
+    <!--Agregar producto al stock-->
+
+    <form id="agregarProducto">
+        <label for="nombre">Nombre del producto</label>
+        <input type="text" name="nombreProductoNuevo" id="nombreProductoNuevo" required>
+
+        <label for="">Categoria</label>
+        <input type="text" name="categoriaProductoNuevo" id="categoriaProductoNuevo" required>
+
+        <label for="">Precio</label>
+        <input type="text" name="precioProductoNuevo" id="precioProductoNuevo" required>
+
+        <label for="">Descripcion</label>
+        <input type="text" name="descripcionProductoNuevo" id="descripcionProductoNuevo" required>
+
+        <button type="submit" id="agregarProductoNuevo">Agregar Producto al stock</button>
+    </form>
+
+    <br>
+    <br>
+
+    <!--Busqueda de stock de productos-->
+
+    <select id="categoriaSeleccionada">
+        <option value="">Seleccione una categoría</option>
+        <option value="computadoras portátiles">Computadoras portátiles</option>
+        <option value="periféricos de juego">Periféricos de juego</option>
+        <option value="impresoras">Impresoras</option>
+        <option value="monitores">Monitores</option>
+        <option value="almacenamiento interno">Almacenamiento interno</option>
+    </select>
+    <button id="btnBuscarCategoria">Buscar</button>
+
+    <!--mostrar stock actual-->
+
+    <button id="verStockBtn">Ver Stock total</button>
+    <!-- Lista desordenada para mostrar lo que se pida-->
+
+    <ul id="ulStock"></ul>
+    <br>
+    <br>
+    <ul id="ulCategoria"></ul>
+    <br>
+    <br>
+    <br>
+    <button id="btnLimpiar">Limpiar Pantalla</button>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

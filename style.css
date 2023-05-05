@@ -1,0 +1,19 @@
+
+h1 {
+    padding-bottom: 4rem;
+}
+
+#agregarProducto {
+    display: inline-grid;
+    padding-left: 4rem;
+}
+
+body {
+    margin: 4rem;
+    padding: 0;
+  }
+  
+  img {
+    width: 500px;
+    height: 200px;
+  }

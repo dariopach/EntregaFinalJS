@@ -6,11 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Preentrega 3</title>
+    <!--Link a mi css-->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <div id="fotoRamdom"></div>
+
+    <h1 id="titulo">CONTROL DE STOCK</h1>
+
     <!--Agregar producto al stock-->
+
+    <h2>Complete para ingresar productos al stock</h2>
 
     <form id="agregarProducto">
         <label for="nombre">Nombre del producto</label>
@@ -33,6 +41,8 @@
 
     <!--Busqueda de stock de productos-->
 
+    <h2>Seleccione categoria para ver el stock</h2>
+
     <select id="categoriaSeleccionada">
         <option value="">Seleccione una categoría</option>
         <option value="computadoras portátiles">Computadoras portátiles</option>
@@ -44,6 +54,7 @@
     <button id="btnBuscarCategoria">Buscar</button>
 
     <!--mostrar stock actual-->
+    <P>oprima para ver el stock completo</P>
 
     <button id="verStockBtn">Ver Stock total</button>
     <!-- Lista desordenada para mostrar lo que se pida-->
@@ -52,10 +63,13 @@
     <br>
     <br>
     <ul id="ulCategoria"></ul>
-    <br>
-    <br>
-    <br>
+    
+
     <button id="btnLimpiar">Limpiar Pantalla</button>
+
+    <h2>Seleccione los productos a eliminar</h2>
+
+
 
     <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

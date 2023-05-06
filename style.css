@@ -2,6 +2,8 @@
 
 body {
   background-color: rgb(219, 216, 213);
+  margin: 4rem;
+  padding: 0;
 }
 
 #titulo {
@@ -15,8 +17,9 @@ body {
     padding-left: 4rem;
 }
 
-body {
-    margin: 4rem;
-    padding: 0;
-  }
-  
+#ulStock {
+  padding: 2rem;
+  border-style: groove;
+  border-radius: 0.5rem;
+  border-color: black;
+}

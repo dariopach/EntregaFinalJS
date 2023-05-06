@@ -1,55 +1,52 @@
 
 
 //constructor de objetos de stock
-
-let id = 0
-
 class Productos {
-    constructor(nombre, categoria, precio, descripcion) {
-        this.nombre = nombre;
-        this.categoria = categoria;
-        this.precio = precio;
-        this.descripcion = descripcion;
-    }
+  constructor(nombre, categoria, precio, descripcion) {
+    this.nombre = nombre;
+    this.categoria = categoria;
+    this.precio = precio;
+    this.descripcion = descripcion;
+  }
 }
 
 //stock inicial de productos (array inicial)
 
-const productosEnStock = []
+let productosEnStock = []
 
 let laptopAcerAspire = new Productos(
-    "Laptop Acer Aspire 5",
-    "Computadoras portátiles",
-    "US$699.99",
-    "Una laptop potente con pantalla Full HD de 15.6 pulgadas, procesador Intel Core i5, 8 GB de RAM y 256 GB de almacenamiento SSD. Ideal para tareas de productividad y entretenimiento."
+  "Laptop Acer Aspire 5",
+  "Computadoras portátiles",
+  "US$699.99",
+  "Una laptop potente con pantalla Full HD de 15.6 pulgadas, procesador Intel Core i5, 8 GB de RAM y 256 GB de almacenamiento SSD. Ideal para tareas de productividad y entretenimiento."
 )
 
 let mouseGamingLogitechGPro = new Productos(
-    "Mouse gaming Logitech G Pro",
-    "Periféricos de juego",
-    "US$59.99",
-    "Un mouse de alta precisión diseñado para jugadores profesionales, con sensor óptico de 16,000 DPI, 6 botones programables, iluminación RGB personalizable y diseño ergonómico para un agarre cómodo durante largas sesiones de juego."
+  "Mouse gaming Logitech G Pro",
+  "Periféricos de juego",
+  "US$59.99",
+  "Un mouse de alta precisión diseñado para jugadores profesionales, con sensor óptico de 16,000 DPI, 6 botones programables, iluminación RGB personalizable y diseño ergonómico para un agarre cómodo durante largas sesiones de juego."
 )
 
 let impresoraMultifuncionalHPOfficeJetPro = new Productos(
-    "Impresora multifuncional HP OfficeJet Pro 6968",
-    "Impresoras",
-    "US$149.99",
-    "Una impresora todo en uno de alta calidad para oficinas, con impresión a doble cara automática, conectividad inalámbrica, escaneo a doble cara, alimentador de documentos automático y alta velocidad de impresión."
+  "Impresora multifuncional HP OfficeJet Pro 6968",
+  "Impresoras",
+  "US$149.99",
+  "Una impresora todo en uno de alta calidad para oficinas, con impresión a doble cara automática, conectividad inalámbrica, escaneo a doble cara, alimentador de documentos automático y alta velocidad de impresión."
 )
 
 let discoDuroExternoSeagateExpansion = new Productos(
-    "Disco duro externo Seagate Expansion 2 TB",
-    "Almacenamiento interno",
-    "US$69.99",
-    "Un disco duro externo de 2 TB de capacidad con conexión USB 3.0 para transferencias de datos rápidas, diseño portátil y compatibilidad con PC y Mac. Perfecto para hacer copias de seguridad de archivos y almacenar datos adicionales."
+  "Disco duro externo Seagate Expansion 2 TB",
+  "Almacenamiento interno",
+  "US$69.99",
+  "Un disco duro externo de 2 TB de capacidad con conexión USB 3.0 para transferencias de datos rápidas, diseño portátil y compatibilidad con PC y Mac. Perfecto para hacer copias de seguridad de archivos y almacenar datos adicionales."
 )
 
 let monitorDellUltraSharp = new Productos(
-    "Monitor Dell UltraSharp",
-    "Monitores",
-    "US$349.99",
-    "Un monitor de 27 pulgadas con resolución QHD, amplios ángulos de visión, calibración de fábrica para colores precisos, puertos HDMI y DisplayPort, y diseño ergonómico ajustable en altura para una experiencia de visualización óptima."
+  "Monitor Dell UltraSharp",
+  "Monitores",
+  "US$349.99",
+  "Un monitor de 27 pulgadas con resolución QHD, amplios ángulos de visión, calibración de fábrica para colores precisos, puertos HDMI y DisplayPort, y diseño ergonómico ajustable en altura para una experiencia de visualización óptima."
 )
 
 //pusheo y mando al local storage
@@ -70,178 +67,204 @@ let descripcionInput = document.getElementById('descripcionProductoNuevo');
 //Escuchar el evento "submit" en el formulario y prevenir el envio del form
 
 formulario.addEventListener('submit', function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    //obtengo datos del usuario
+  //obtengo datos del usuario
 
-    let nombreProducto = nombreInput.value;
-    let categoriaProducto = categoriaInput.value;
-    let precioProducto = precioInput.value;
-    let descripcionProducto = descripcionInput.value;
+  let nombreProducto = nombreInput.value;
+  let categoriaProducto = categoriaInput.value;
+  let precioProducto = precioInput.value;
+  let descripcionProducto = descripcionInput.value;
 
-    //valido que ingresen todos los datos required
+  //valido que ingresen todos los datos required
 
-    if (nombreProducto === '' || categoriaProducto === '' || precioProducto === '' || descripcionProducto === '') {
-        alert('Por favor, complete todos los campos requeridos.');
-        return;
-    }
+  if (nombreProducto === '' || categoriaProducto === '' || precioProducto === '' || descripcionProducto === '') {
+    alert('Por favor, complete todos los campos requeridos.');
+    return;
+  }
 
-    //creo instancia de la clase Productos con los valores ingresados
-    let productoNuevo = new Productos(nombreProducto, categoriaProducto, precioProducto, descripcionProducto);
+  //creo instancia de la clase Productos con los valores ingresados
+  let productoNuevo = new Productos(nombreProducto, categoriaProducto, precioProducto, descripcionProducto);
 
-    // Obtener el array de productos del Local Storage o crearlo sino existe
-    let stockEnLocalStorage = JSON.parse(localStorage.getItem('productosEnStock')) || [];
+  // Obtener el array de productos del Local Storage o crearlo sino existe
+  let stockEnLocalStorage = JSON.parse(localStorage.getItem('productosEnStock')) || [];
 
-    // Agregar el nuevo producto al array de productos
-    stockEnLocalStorage.push(productoNuevo);
+  // Agregar el nuevo producto al array de productos
+  stockEnLocalStorage.push(productoNuevo);
 
-    // Guardar el array de productos actualizado en el Local Storage
-    localStorage.setItem('productosEnStock', JSON.stringify(stockEnLocalStorage));
+  // Guardar el array de productos actualizado en el Local Storage
+  localStorage.setItem('productosEnStock', JSON.stringify(stockEnLocalStorage));
 
-    // Limpiar los campos del formulario después de agregar el producto
-    nombreInput.value = '';
-    categoriaInput.value = '';
-    precioInput.value = '';
-    descripcionInput.value = '';
+  // Limpiar los campos del formulario después de agregar el producto
+  nombreInput.value = '';
+  categoriaInput.value = '';
+  precioInput.value = '';
+  descripcionInput.value = '';
 
-    // Mostrar un mensaje de éxito
+  // Mostrar un mensaje de éxito
 
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Producto agregado con éxito al stock',
-        showConfirmButton: false,
-        timer: 1000
-      })
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Producto agregado con éxito al stock',
+    showConfirmButton: false,
+    timer: 1000
+  })
 });
+
+function renderizarStock() {
+  // Obtener el array de productos del Local Storage
+  let stockEnLocalStorage = JSON.parse(localStorage.getItem('productosEnStock'));
+  productosEnStock = stockEnLocalStorage;
+
+  // Obtener el elemento ul del DOM donde se mostrará el stock
+  let ulStock = document.getElementById('ulStock');
+
+  // Limpiar el contenido existente del ul
+  ulStock.innerHTML = '';
+
+  // Mostrar el stock en el ul como una lista desordenada
+  if (stockEnLocalStorage && stockEnLocalStorage.length > 0) {
+    stockEnLocalStorage.forEach(function (producto) {
+      let li = document.createElement('li');
+      li.id = "borrable"
+      let checkbox = document.createElement("input");
+      checkbox.setAttribute("type", "checkbox");
+      li.textContent = `Nombre: ${producto.nombre},Categoría: ${producto.categoria}, Precio: ${producto.precio}, Descripción: ${producto.descripcion}`;
+      li.appendChild(checkbox);
+      ulStock.appendChild(li);
+    });
+  } else {
+    let li = document.createElement('li');
+    li.textContent = 'No hay productos en stock.';
+    ulStock.appendChild(li);
+
+  }
+}
 
 // Código JavaScript para manejar el clic en el botón de ver stock
 document.getElementById('verStockBtn').addEventListener('click', function () {
-    // Obtener el array de productos del Local Storage
-    let stockEnLocalStorage = JSON.parse(localStorage.getItem('productosEnStock'));
+  renderizarStock()
 
-    // Obtener el elemento ul del DOM donde se mostrará el stock
-    let ulStock = document.getElementById('ulStock');
-
-    // Limpiar el contenido existente del ul
-    ulStock.innerHTML = '';
-
-    // Mostrar el stock en el ul como una lista desordenada
-    if (stockEnLocalStorage && stockEnLocalStorage.length > 0) {
-        stockEnLocalStorage.forEach(function (producto) {
-            let li = document.createElement('li');
-            li.textContent = `Nombre: ${producto.nombre},Categoría: ${producto.categoria}, Precio: ${producto.precio}, Descripción: ${producto.descripcion}`;
-            ulStock.appendChild(li);
-        });
-    } else {
-        let li = document.createElement('li');
-        li.textContent = 'No hay productos en stock.';
-        ulStock.appendChild(li);
-        
-    }
-
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Este es el stock total de productos',
-        showConfirmButton: false,
-        timer: 1000
-      })
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Este es el stock total de productos',
+    showConfirmButton: false,
+    timer: 1000
+  })
 });
 
 //boton busqueda
 
 function buscarPorCategoria() {
-    const categoriaSeleccionadaValor = categoriaSeleccionada.value;
-    const productosFiltrados = JSON.parse(localStorage.getItem('productosEnStock')).filter(function (producto) {
-        return producto.categoria.toLowerCase() === categoriaSeleccionadaValor.toLowerCase();
+  const categoriaSeleccionadaValor = categoriaSeleccionada.value;
+  const productosFiltrados = JSON.parse(localStorage.getItem('productosEnStock')).filter(function (producto) {
+    return producto.categoria.toLowerCase() === categoriaSeleccionadaValor.toLowerCase();
+  });
+
+  ulCategoria.innerHTML = ''; // Limpiar contenido existente
+
+  if (productosFiltrados.length > 0) {
+    productosFiltrados.forEach(function (producto) {
+      const li = document.createElement('li');
+      li.textContent = `Nombre: ${producto.nombre}, Categoría: ${producto.categoria}, Precio: ${producto.precio}, Descripción: ${producto.descripcion}`;
+      ulCategoria.appendChild(li);
     });
-
-    ulStock.innerHTML = ''; // Limpiar contenido existente
-
-    if (productosFiltrados.length > 0) {
-        productosFiltrados.forEach(function (producto) {
-            const li = document.createElement('li');
-            li.textContent = `Nombre: ${producto.nombre}, Categoría: ${producto.categoria}, Precio: ${producto.precio}, Descripción: ${producto.descripcion}`;
-            ulStock.appendChild(li);
-        });
-    } else {
-        const li = document.createElement('li');
-        li.textContent = 'No se encontraron productos en la categoría seleccionada.';
-        ulStock.appendChild(li);
-    }
+  } else {
+    const li = document.createElement('li');
+    li.textContent = 'No se encontraron productos en la categoría seleccionada.';
+    ulCategoria.appendChild(li);
+  }
 }
 
 // Manejar evento de click en el botón de búsqueda de categoría
 btnBuscarCategoria.addEventListener('click', function (event) {
-    event.preventDefault();
-    buscarPorCategoria();
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: `Se buscaron ${categoriaSeleccionada.value}`,
-        showConfirmButton: false,
-        timer: 1000
-      })
+  event.preventDefault();
+  buscarPorCategoria();
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: `Se buscaron ${categoriaSeleccionada.value}`,
+    showConfirmButton: false,
+    timer: 1000
+  })
 });
 
-//btn limpiar pantalla
+//btn limpiar pantalla stock
 
-document.getElementById("btnLimpiar").addEventListener("click", function() {
-    let ulStock = document.getElementById('ulStock');
-    ulStock.innerHTML = '';
+document.getElementById("btnLimpiar").addEventListener("click", function () {
+  let ulStock = document.getElementById('ulStock');
+  ulStock.innerHTML = '';
 
-    Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: `Se limpiaron los datos`,
-        showConfirmButton: false,
-        timer: 1000
-      })
+  Swal.fire({
+    position: 'center',
+    icon: 'error',
+    title: `Se limpiaron los datos`,
+    showConfirmButton: false,
+    timer: 1000
+  })
+});
+
+//btn limpiar busqueda
+
+document.getElementById("btnLimpiarBusqueda").addEventListener("click", function () {
+  let ulCategoria = document.getElementById('ulCategoria');
+  ulCategoria.innerHTML = '';
+
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: `Se limpio la busqueda`,
+    showConfirmButton: false,
+    timer: 1000
+  })
 });
 
 
 //Imagen random cada vez que entra a la pagina
 
+function renderItem() {
+  fetch(`https://source.unsplash.com/1600x100/?beach`).then((response) => {
+    let titulo = document.getElementById("titulo");
+    titulo.style.backgroundImage = `url(${response.url})`;
+  })
+}
+
+renderItem();
 
 
-function renderItem(){
-    fetch(`https://source.unsplash.com/1600x100/?beach`).then((response)=> { 
-      let titulo = document.getElementById("titulo");
-      titulo.style.backgroundImage = `url(${response.url})`;
-    }) 
-  }
-  
-  renderItem();
+//Boton eliminar
 
 
-  //Boton eleminar
-
-
-// get reference to the delete button and the ul list
+// referencia del boton borrar y ul 
 const btnEliminar = document.getElementById("btnEliminar");
 const ulStock = document.getElementById("ulStock");
 
-// add event listener to delete button
-btnEliminar.addEventListener("click", function() {
-  // get all the list items
-  const items = ulStock.getElementsByTagName("li");
+// agrego eventListener al boton 
+btnEliminar.addEventListener("click", function () {
+  // obtengo los productos
+  const items = ulStock.querySelectorAll("#borrable");
 
-  // create an array to store the items to delete
+  // creo un array para borrar
   const itemsToDelete = [];
 
-  // loop through the items and check if they are selected for deletion
-  for (let i = 0; i < items.length; i++) {
+  // loop para detectar los seleccionados
+  for (let i = items.length - 1; i >= 0; i--) {
     const item = items[i];
     const checkbox = item.getElementsByTagName("input")[0];
     if (checkbox.checked) {
-      itemsToDelete.push(item);
+      itemsToDelete.push(i);
     }
   }
 
-  // show a popup with the list of items to delete
+  // popup con lo que se va a borrar
   if (itemsToDelete.length > 0) {
-    const message = itemsToDelete.map(item => item.textContent.trim()).join("\n");
+    let message = "";
+    itemsToDelete.forEach(index => {
+      message += "- " + productosEnStock[index].nombre + "\n"
+    });
+
     Swal.fire({
       title: "Eliminar productos",
       text: `¿Está seguro que desea eliminar los siguientes productos?\n\n${message}`,
@@ -252,14 +275,18 @@ btnEliminar.addEventListener("click", function() {
       confirmButtonText: "Confirmar"
     }).then((result) => {
       if (result.isConfirmed) {
-        // delete the selected items
-        itemsToDelete.forEach(item => ulStock.removeChild(item));
+        // borrar los seleccionados
+        itemsToDelete.forEach(item => {
+          productosEnStock.splice(item, 1)
+        });
+        localStorage.setItem('productosEnStock', JSON.stringify(productosEnStock));
+        renderizarStock()
       }
     });
   } else {
     Swal.fire({
       title: "Eliminar productos",
-      text: "Seleccione los productos que desea eliminar",
+      text: "Seleccione mediante checkbox los productos que desea eliminar",
       icon: "info"
     });
   }

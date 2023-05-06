@@ -1,6 +1,13 @@
 
-h1 {
-    padding-bottom: 4rem;
+
+body {
+  background-color: rgb(219, 216, 213);
+}
+
+#titulo {
+  -webkit-text-stroke: 0.3px white;
+  color: black; 
+  padding: 2rem;
 }
 
 #agregarProducto {
@@ -13,7 +20,3 @@ body {
     padding: 0;
   }
   
-  img {
-    width: 500px;
-    height: 200px;
-  }

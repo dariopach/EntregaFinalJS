@@ -137,14 +137,23 @@ document.getElementById('verStockBtn').addEventListener('click', function () {
         let li = document.createElement('li');
         li.textContent = 'No hay productos en stock.';
         ulStock.appendChild(li);
+        
     }
+
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Este es el stock total de productos',
+        showConfirmButton: false,
+        timer: 1000
+      })
 });
 
 //boton busqueda
 
 function buscarPorCategoria() {
     const categoriaSeleccionadaValor = categoriaSeleccionada.value;
-    const productosFiltrados = productosEnStock.filter(function (producto) {
+    const productosFiltrados = JSON.parse(localStorage.getItem('productosEnStock')).filter(function (producto) {
         return producto.categoria.toLowerCase() === categoriaSeleccionadaValor.toLowerCase();
     });
 
@@ -167,6 +176,13 @@ function buscarPorCategoria() {
 btnBuscarCategoria.addEventListener('click', function (event) {
     event.preventDefault();
     buscarPorCategoria();
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: `Se buscaron ${categoriaSeleccionada.value}`,
+        showConfirmButton: false,
+        timer: 1000
+      })
 });
 
 //btn limpiar pantalla
@@ -174,23 +190,77 @@ btnBuscarCategoria.addEventListener('click', function (event) {
 document.getElementById("btnLimpiar").addEventListener("click", function() {
     let ulStock = document.getElementById('ulStock');
     ulStock.innerHTML = '';
+
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: `Se limpiaron los datos`,
+        showConfirmButton: false,
+        timer: 1000
+      })
 });
 
 
-//Imagen ramdom
+//Imagen random cada vez que entra a la pagina
 
-const numItemsToGenerate = 1; 
+
 
 function renderItem(){
-  fetch(`https://source.unsplash.com/1600x900/?beach`).then((response)=> {   
-    let item = document.createElement('div');
-    item.classList.add('item');
-    item.innerHTML = `
-      <img class="beach-image" src="${response.url}" alt="beach image"/>
-    `     
-    document.body.appendChild(item);
-  }) 
-}
-for(let i=0;i<numItemsToGenerate;i++){
+    fetch(`https://source.unsplash.com/1600x100/?beach`).then((response)=> { 
+      let titulo = document.getElementById("titulo");
+      titulo.style.backgroundImage = `url(${response.url})`;
+    }) 
+  }
+  
   renderItem();
-}
+
+
+  //Boton eleminar
+
+
+// get reference to the delete button and the ul list
+const btnEliminar = document.getElementById("btnEliminar");
+const ulStock = document.getElementById("ulStock");
+
+// add event listener to delete button
+btnEliminar.addEventListener("click", function() {
+  // get all the list items
+  const items = ulStock.getElementsByTagName("li");
+
+  // create an array to store the items to delete
+  const itemsToDelete = [];
+
+  // loop through the items and check if they are selected for deletion
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const checkbox = item.getElementsByTagName("input")[0];
+    if (checkbox.checked) {
+      itemsToDelete.push(item);
+    }
+  }
+
+  // show a popup with the list of items to delete
+  if (itemsToDelete.length > 0) {
+    const message = itemsToDelete.map(item => item.textContent.trim()).join("\n");
+    Swal.fire({
+      title: "Eliminar productos",
+      text: `¿Está seguro que desea eliminar los siguientes productos?\n\n${message}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // delete the selected items
+        itemsToDelete.forEach(item => ulStock.removeChild(item));
+      }
+    });
+  } else {
+    Swal.fire({
+      title: "Eliminar productos",
+      text: "Seleccione los productos que desea eliminar",
+      icon: "info"
+    });
+  }
+});
